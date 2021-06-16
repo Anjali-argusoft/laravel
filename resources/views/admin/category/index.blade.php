@@ -24,19 +24,26 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">SL NO</th>
+                        <th>SL NO</th>
                         <th scope="col">User ID</th>
                         <th scope="col">Category name</th>
                         <th scope="col">Created At</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @php($i = 1)
+                    @foreach($categories as $category)
                     <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <th>{{ $i++ }}</th>
+                    <td>{{ $category->user_id }}</td>
+                    <td>{{ $category->category_name }}</td>
+                    @if($category->created_at == NULL)
+                    <td> <span class="text-danger">No Date Set</span></td>
+                    @else
+                    <td>{{ $category->created_at->diffForHumans() }}</td>
+                    @endif
                     </tr>
+                    @endforeach
                     </tbody>
             </table>
          </div>

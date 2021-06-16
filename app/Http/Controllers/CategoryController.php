@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
       public function getcategories(){
-        return view('admin.category.index');
+        $categories = Category::latest()->get();
+        return view('admin.category.index', compact('categories'));
     }
     public function addCategory(Request $request){
       $validated = $request->validate([
