@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
       public function getcategories(){
-        $categories = Category::latest()->get();
+        // $categories = Category::latest()->get();
+        // query builder method
+         $categories = DB::table('categories')->latest()->get();
         return view('admin.category.index', compact('categories'));
     }
     public function addCategory(Request $request){
