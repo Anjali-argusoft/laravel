@@ -34,7 +34,8 @@
                     @foreach($categories as $category)
                     <tr>
                     <th>{{ $categories->firstItem()+$loop->index }}</th>
-                    <td>{{ $category->user_id }}</td>
+                    <!-- ORM method <td>{{ $category->user->name }}</td> -->
+                    <td>{{ $category->name }}</td>
                     <td>{{ $category->category_name }}</td>
                     @if($category->created_at == NULL)
                     <td> <span class="text-danger">No Date Set</span></td>
