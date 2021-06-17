@@ -31,10 +31,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @php($i = 1)
                     @foreach($categories as $category)
                     <tr>
-                    <th>{{ $i++ }}</th>
+                    <th>{{ $categories->firstItem()+$loop->index }}</th>
                     <td>{{ $category->user_id }}</td>
                     <td>{{ $category->category_name }}</td>
                     @if($category->created_at == NULL)
@@ -46,6 +45,7 @@
                     @endforeach
                     </tbody>
             </table>
+            {{ $categories->links() }}
          </div>
         </div>
 
