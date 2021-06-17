@@ -28,20 +28,22 @@
                         <th scope="col">User ID</th>
                         <th scope="col">Category name</th>
                         <th scope="col">Created At</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($categories as $category)
                     <tr>
                     <th>{{ $categories->firstItem()+$loop->index }}</th>
-                    <!-- ORM method <td>{{ $category->user->name }}</td> -->
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->user->name }}</td>
                     <td>{{ $category->category_name }}</td>
                     @if($category->created_at == NULL)
                     <td> <span class="text-danger">No Date Set</span></td>
                     @else
                     <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
                     @endif
+                    <td> <a href="{{ url('category/edit/'.$category->id)}}" class="btn btn-info">Edit</a>
+                    <a href="{{ url('category/delete/'.$category->id)}}" class="btn btn-danger">Delete</a></td>
                     </tr>
                     @endforeach
                     </tbody>
