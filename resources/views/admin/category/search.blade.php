@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            All Category
+            Searched Results
         </h2>
     </x-slot>
 
@@ -49,6 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(sizeof($categories))
                                 @foreach($categories as $category)
                                 <tr>
                                     <th>{{ $categories->firstItem()+$loop->index }}</th>
@@ -63,6 +64,11 @@
                                         <a href="{{ url('category/delete/'.$category->id)}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 @endforeach
+                                @else
+                                <tr>
+                                    <td> No Matched Category Found!! </td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                         {{ $categories->links() }}
@@ -78,13 +84,10 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Category Name</label>
                                     <input type="text" class="form-control" id="categoryname" name="category_name" aria-describedby="emailHelp">
-
                                     @error('category_name')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
-
                                 </div>
-
                                 <button type="submit" class="btn btn-primary">Add Category</button>
                             </form>
                         </div>
