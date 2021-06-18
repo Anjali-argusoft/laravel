@@ -72,14 +72,18 @@ class CategoryController extends Controller
     //   'category_name' => $request->category_name,
     //   'user_id' => Auth::user()->id
     // ]);
-    $categories = DB::table('categories')->where('id',$id);
+    $date = array();
+    $data['category_name'] = $request->category_name;
+    $data['user_id'] = Auth::user()->id;
+    $categories = DB::table('categories')->where('id',$id)->update($data);
 
     return Redirect()->route('categories')->with('success', 'Category updated successfully');
   }
 
   public function Delete($id)
   {
-    $categories = Category::find($id)->delete();
+    //$categories = Category::find($id)->delete();
+    $categories = DB::table('categories')->where('id',$id)->delete();
     return Redirect()->route('categories')->with('success', 'Category deleted successfully');
   }
 
