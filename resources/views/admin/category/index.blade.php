@@ -52,7 +52,7 @@
                                 @foreach($categories as $category)
                                 <tr>
                                     <th>{{ $categories->firstItem()+$loop->index }}</th>
-                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->user->name }}</td>
                                     <td>{{ $category->category_name }}</td>
                                     @if($category->created_at == NULL)
                                     <td> <span class="text-danger">No Date Set</span></td>
@@ -60,7 +60,7 @@
                                     <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
                                     @endif
                                     <td> <a href="{{ url('category/edit/'.$category->id)}}" class="btn btn-info">Edit</a>
-                                        <a href="{{ url('category/delete/'.$category->id)}}" class="btn btn-danger">Delete</a></td>
+                                        <a href="{{ url('category/softdelete/'.$category->id)}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -90,6 +90,48 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card"> 
+                    <div class="card-header">
+                            <div class="row">
+                               <h4>Trashed Category</h4>
+                            </div>
+                        </div>                 
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SL NO</th>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">Category name</th>
+                                    <th scope="col">Created At</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($trashcat as $category)
+                                <tr>
+                                    <th>{{ $categories->firstItem()+$loop->index }}</th>
+                                    <td>{{ $category->user->name }}</td>
+                                    <td>{{ $category->category_name }}</td>
+                                    @if($category->created_at == NULL)
+                                    <td> <span class="text-danger">No Date Set</span></td>
+                                    @else
+                                    <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
+                                    @endif
+                                    <td> <a href="{{ url('category/restore/'.$category->id)}}" class="btn btn-info">Restore</a>
+                                        <a href="{{ url('category/pdelete/'.$category->id)}}" class="btn btn-danger">P Delete</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $categories->links() }}
+                    </div>
+                </div>
+
+               
             </div>
         </div>
     </div>

@@ -42,9 +42,11 @@ Route::get('/categories/all', [CategoryController::class, 'getcategories'])->nam
 Route::post('/categories/add', [CategoryController::class, 'addCategory'])->name('addCategories');
 
 Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
 
-Route::get('/category/delete/{id}', [CategoryController::class, 'Delete']);
+Route::get('/category/softdelete/{id}', [CategoryController::class, 'SoftDelete']);
+Route::get('/category/pdelete/{id}', [CategoryController::class, 'Delete']);
 
 Route::get('/search', [CategoryController::class, 'search'])->name('search');
 Route::get('/filter', [CategoryController::class, 'filter'])->name('filter');
