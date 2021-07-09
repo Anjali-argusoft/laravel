@@ -16,11 +16,15 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('categories') }}" :active="request()->routeIs('categories')">
-                        {{ __('All Category') }}
+                        {{ __('Category') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('brand') }}" :active="request()->routeIs('brand')">
+                        {{ __('Brand') }}
                     </x-jet-nav-link>
                 </div>
             </div>
 
+            
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())

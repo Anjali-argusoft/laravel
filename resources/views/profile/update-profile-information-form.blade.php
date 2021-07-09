@@ -65,6 +65,16 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+         <!-- Role -->
+         <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="role" value="{{ __('Role') }}" />
+            <select name="role" id="role" class="mt-1 block w-full" wire:model.defer="state.role">
+                    <option value="0">User</option>
+                    <option value="1">Admin</option>
+                </select>
+            <x-jet-input-error for="role" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

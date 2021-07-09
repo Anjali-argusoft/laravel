@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 // use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -50,3 +51,11 @@ Route::get('/category/pdelete/{id}', [CategoryController::class, 'Delete']);
 
 Route::get('/search', [CategoryController::class, 'search'])->name('search');
 Route::get('/filter', [CategoryController::class, 'filter'])->name('filter');
+
+Route::get('/brand/all', [BrandController::class, 'Allbrand'])->name('brand');
+Route::post('/brand/add', [BrandController::class, 'addBrand'])->name('addBrand');
+
+Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
+Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
+
+Route::get('redirects', 'App\Http\Controllers\HomeController@index');
